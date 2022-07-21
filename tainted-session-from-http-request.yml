@@ -1,0 +1,58 @@
+rules:
+  - id: tainted-session-from-http-request
+    message: Detected input from a HTTPServletRequest going into a session command,
+      like `setAttribute`. User input into such a command could lead to an
+      attacker inputting malicious code into your session parameters,  blurring
+      the line between what's trusted and untrusted,  and therefore leading to a
+      trust boundary violation. This could lead to programmers trusting
+      unvalidated data. Instead, thoroughly sanitize user input before passing
+      it into such function calls.
+    languages:
+      - java
+    severity: WARNING
+    mode: taint
+    pattern-sources:
+      - patterns:
+          - pattern-either:
+              - patterns:
+                  - pattern: |
+                      (HttpServletRequest $REQ).$FUNC(...)
+                  - pattern-not: |
+                      (HttpServletRequest $REQ).getSession()
+              - patterns:
+                  - pattern-inside: >
+                      (javax.servlet.http.Cookie[] $COOKIES) =
+                      (HttpServletRequest $REQ).getCookies(...);
+
+                      ...
+
+                      for (javax.servlet.http.Cookie $COOKIE: $COOKIES) {
+                        ...
+                      }
+                  - pattern: |
+                      $COOKIE.getValue(...)
+              - patterns:
+                  - pattern-inside: |
+                      $TYPE[] $VALS = (HttpServletRequest $REQ).$GETFUNC(... );
+                      ...
+                  - pattern: |
+                      $PARAM = $VALS[$INDEX];
+              - patterns:
+                  - pattern-inside: |
+                      $HEADERS = (HttpServletRequest $REQ).getHeaders(...);
+                      ...
+                      $PARAM = $HEADERS.$FUNC(...);
+                      ...
+                  - pattern: |
+                      java.net.URLDecoder.decode($PARAM, ...)
+    pattern-sinks:
+      - patterns:
+          - pattern-either:
+              - pattern: (HttpServletRequest $REQ).getSession().$FUNC(...);
+    metadata:
+      category: security
+      technology:
+        - java
+      cwe: "CWE-501: Trust Boundary Violation"
+      owasp: "A07: Identification and Authentication Failures"
+      license: Commons Clause License Condition v1.0[LGPL-2.1-only]
