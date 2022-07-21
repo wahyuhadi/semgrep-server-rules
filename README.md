@@ -4,7 +4,7 @@ This is a sample semgrep rule server for serving individual rules and packs.
 To run:
 
 ```sh
-$ ./server -listen=:8080
+$ go run main.go -listen=:8080
 ```
 
 The `packs.yml` file contains rule packs.
