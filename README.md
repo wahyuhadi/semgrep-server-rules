@@ -1,5 +1,5 @@
 
-This is a sample semgrep rule server for serving individual rules and packs.
+This is a simple semgrep rule server for serving individual rules and packs.
 
 To run:
 
