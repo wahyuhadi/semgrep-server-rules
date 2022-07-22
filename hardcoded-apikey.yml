@@ -1,0 +1,26 @@
+rules:
+  - id: hardcoded-apikey
+    patterns:
+      - pattern-not: $X = "";
+      - pattern-not: $M($X, "", ...);
+      - pattern-either:
+          - pattern: |
+              $X = "...";
+          - pattern: |
+              $X ="...";
+          - pattern: |
+              $M($X, "...", ...);
+      - metavariable-regex:
+          metavariable: $X
+          regex: ^(redisKey|spring.datasource.write.password|spring.datasource.write.username)$
+
+    message: A hardcoded Key is identified.
+    languages:
+      - java
+    severity: WARNING
+    metadata:
+      cwe: cwe-798
+      owasp-mobile: m9
+      masvs: storage-14
+      reference: https://github.com/MobSF/owasp-mstg/blob/master/Document/0x05d-Testing-Data-Storage.md#storing-a-key---example
+      license: LGPL-3.0-or-later

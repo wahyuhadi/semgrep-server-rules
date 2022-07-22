@@ -27,3 +27,7 @@ packs:
     - jpa-sqli
     - spring-sqli
     - jpa-raw-sqli
+    - java-jwt-hardcoded-secret
+    - dangerous-exec-command
+    - detected-generic-secret
+    - hardcoded-apikey
