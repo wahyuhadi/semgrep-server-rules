@@ -31,3 +31,9 @@ packs:
     - dangerous-exec-command
     - detected-generic-secret
     - hardcoded-apikey
+    - node-postgres-sqli
+    - sequelize-sqli
+    - tainted-eval
+    - php-tainted-sql-string
+    - md5-loose-equality
+    - laravel-api-route-sql-injection
