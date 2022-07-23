@@ -128,7 +128,7 @@ func (rh rulesHandler) HandlePack(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-
+	log.Println(rules, p)
 	var f RuleFile
 	for _, rule := range rules {
 		f.Rules = append(f.Rules, rh.rules[rule])

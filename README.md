@@ -24,9 +24,28 @@ To serve and run a rule pack:
 ```sh
 $ pip3 install semgrep
 ```
-
+scan all
 ```sh
-$ semgrep --config=http://localhost:8080/p/expr
+$ semgrep --config=http://localhost:8080/p/all
+```
+scan java
+```sh
+$ semgrep --config=http://localhost:8080/p/java
+```
+
+scan go
+```sh
+$ semgrep --config=http://localhost:8080/p/go
+```
+
+scan php
+```sh
+$ semgrep --config=http://localhost:8080/p/php
+```
+
+scan nodejs/javascript/deno/ts
+```sh
+$ semgrep --config=http://localhost:8080/p/js
 ```
 
 To serve and run an individual rule:

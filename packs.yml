@@ -1,5 +1,5 @@
 packs:
-  expr:
+  all:
     - bidirectional-char
     - database-sqli
     - tainted-sql-string
@@ -37,3 +37,44 @@ packs:
     - php-tainted-sql-string
     - md5-loose-equality
     - laravel-api-route-sql-injection
+  go:
+    - bidirectional-char
+    - database-sqli
+    - tainted-sql-string
+    - gorm-dangerous-method
+    - grpc-client-insecure-connection
+    - jwt-go-none-algorithm
+    - hardcoded-jwt-key
+    - math-rand-used
+    - missing-ssl-minversion
+    - string-formatted-query
+    - unescaped-data-in-js
+    - gosql-sqli
+    - pg-orm-sqli
+    - pg-sqli
+    - go-ssti
+  java:
+    - tainted-session-from-http-request
+    - tainted-xpath-from-http-request
+    - unsafe-reflection
+    - unvalidated-redirect
+    - weak-ssl-context
+    - jdbc-sql-formatted-string
+    - hibernate-sqli
+    - jdbc-sqli
+    - jdo-sqli
+    - jpa-sqli
+    - spring-sqli
+    - jpa-raw-sqli
+    - java-jwt-hardcoded-secret
+    - dangerous-exec-command
+    - detected-generic-secret
+    - hardcoded-apikey
+  js:
+     - node-postgres-sqli
+     - sequelize-sqli
+     - tainted-eval
+  php:
+     - php-tainted-sql-string
+     - md5-loose-equality
+     - laravel-api-route-sql-injection
