@@ -1,13 +1,17 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
+	"os/signal"
 	"path/filepath"
 	"strings"
+	"syscall"
+	"time"
 
 	"gopkg.in/yaml.v2"
 )
@@ -23,10 +27,9 @@ type PackFile struct {
 }
 
 func main() {
-
-	dir := flag.String("dir", ".", "directory to scan for yaml files")
+	dir := flag.String("dir", "./patterns/", "directory to scan for yaml files")
 	listen := flag.String("listen", ":8080", "address to listen on")
-	packyml := flag.String("packs", "packs.yml", "list of rule packs")
+	packyml := flag.String("packs", "./patterns/packs.yml", "list of rule packs")
 
 	flag.Parse()
 
@@ -88,11 +91,45 @@ func main() {
 
 	handler := rulesHandler{rules, packs.Packs}
 
-	http.HandleFunc("/r/", handler.HandleRule)
-	http.HandleFunc("/p/", handler.HandlePack)
+	mux := http.NewServeMux()
+
+	mux.HandleFunc("/r/", handler.HandleRule)
+	mux.HandleFunc("/p/", handler.HandlePack)
 
 	log.Println("listening on", *listen)
-	http.ListenAndServe(*listen, nil)
+
+	httpServer := &http.Server{
+		Addr:    *listen,
+		Handler: mux,
+	}
+
+	done := make(chan os.Signal)
+
+	go func() {
+		signal.Notify(done, syscall.SIGTERM, syscall.SIGINT)
+	}()
+
+	go func() {
+		err := httpServer.ListenAndServe()
+		if err != nil {
+			if err != http.ErrServerClosed {
+				log.Fatalln("error:", err)
+			}
+		}
+	}()
+
+	<-done
+
+	log.Println("shutting down")
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	if err := httpServer.Shutdown(ctx); err != nil {
+		log.Fatalln("error:", err)
+	}
+
+	log.Println("shut down")
 }
 
 type rulesHandler struct {
