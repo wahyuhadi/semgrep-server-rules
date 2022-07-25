@@ -23,10 +23,9 @@ type PackFile struct {
 }
 
 func main() {
-
-	dir := flag.String("dir", ".", "directory to scan for yaml files")
+	dir := flag.String("dir", "./patterns/", "directory to scan for yaml files")
 	listen := flag.String("listen", ":8080", "address to listen on")
-	packyml := flag.String("packs", "packs.yml", "list of rule packs")
+	packyml := flag.String("packs", "./patterns/packs.yml", "list of rule packs")
 
 	flag.Parse()
 
