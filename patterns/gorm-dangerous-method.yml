@@ -18,7 +18,7 @@ rules:
                   ($REQUEST : *http.Request).$ANYTHING
           - metavariable-regex:
               metavariable: $ANYTHING
-              regex: ^(BasicAuth|Body|Cookie|Cookies|Form|FormValue|GetBody|Host|MultipartReader|ParseForm|ParseMultipartForm|PostForm|PostFormValue|Referer|RequestURI|Trailer|TransferEncoding|UserAgent|URL)$
+              regex: ^(GetQuery|BasicAuth|Body|Cookie|Cookies|Form|FormValue|GetBody|Host|MultipartReader|ParseForm|ParseMultipartForm|PostForm|PostFormValue|Referer|RequestURI|Trailer|TransferEncoding|UserAgent|URL)$
     pattern-sinks:
       - patterns:
           - pattern-inside: |
@@ -39,7 +39,7 @@ rules:
           - focus-metavariable: $VALUE
           - metavariable-regex:
               metavariable: $METHOD
-              regex: ^(Order|Exec|Raw|Group|Having|Distinct|Select|Pluck)$
+              regex: ^(Order|Exec|Raw|Group|Having|Distinct|Select|Pluck|Order)$
     metadata:
       category: security
       technology:
