@@ -37,6 +37,15 @@ packs:
     - php-tainted-sql-string
     - md5-loose-equality
     - laravel-api-route-sql-injection
+    - sqlalchemy-sqli
+    - py-mysql-sqli
+    - pymysql-sqli
+    - tainted-pickle-deserialization
+    - pytainted-sql-string
+    - boto-hardcoded-token
+    - bad-custom-expression-as-sql
+    - avoid-raw-sql
+    - path-traversal-open
   go:
     - bidirectional-char
     - database-sqli
