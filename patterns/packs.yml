@@ -46,6 +46,7 @@ packs:
     - bad-custom-expression-as-sql
     - avoid-raw-sql
     - path-traversal-open
+    - avoid-sqlalchemy-text 
   go:
     - bidirectional-char
     - database-sqli
@@ -97,3 +98,4 @@ packs:
      - bad-custom-expression-as-sql
      - avoid-raw-sql
      - path-traversal-open
+     - avoid-sqlalchemy-text
