@@ -47,6 +47,7 @@ packs:
     - avoid-raw-sql
     - path-traversal-open
     - avoid-sqlalchemy-text 
+    - sqlalchemy-execute-raw-query
   go:
     - bidirectional-char
     - database-sqli
@@ -99,3 +100,4 @@ packs:
      - avoid-raw-sql
      - path-traversal-open
      - avoid-sqlalchemy-text
+     - sqlalchemy-execute-raw-query
