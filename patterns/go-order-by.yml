@@ -1,0 +1,24 @@
+rules:
+  - id: go-order-by
+    patterns:
+      - pattern: fmt.Sprintf("$X",$PARAM1,...)
+      - metavariable-regex:
+          metavariable: $X
+          regex: .*\b(?i)(Order By)\b.*
+    languages:
+      - go
+    message: Detected string concatenation with a non-literal variable in a
+      "database/sql" Go SQL statement. This could lead to SQL injection if the
+      variable is user-controlled and not properly sanitized. In order to
+      prevent SQL injection, used parameterized queries or prepared statements
+      instead. You can use prepared statements with the 'Prepare' and
+      'PrepareContext' calls.
+    metadata:
+      references:
+        - https://golang.org/pkg/database/sql/
+      category: security
+      technology:
+        - go
+      confidence: MEDIUM
+      license: Commons Clause License Condition v1.0[LGPL-2.1-only]
+    severity: ERROR

@@ -48,6 +48,7 @@ packs:
     - path-traversal-open
     - avoid-sqlalchemy-text 
     - sqlalchemy-execute-raw-query
+    - go-order-by
   go:
     - bidirectional-char
     - database-sqli
@@ -64,6 +65,7 @@ packs:
     - pg-orm-sqli
     - pg-sqli
     - go-ssti
+    - go-order-by
   java:
     - tainted-session-from-http-request
     - tainted-xpath-from-http-request
