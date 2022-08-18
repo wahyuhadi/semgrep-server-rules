@@ -53,6 +53,11 @@ To serve and run an individual rule:
 $ semgrep --config=http://localhost:8080/r/database-sqli
 ```
 
+scan solidity
+```sh
+$ semgrep --config=http://localhost:8080/p/solidity
+```
+
 Rules include
 
     - bidirectional-char
@@ -86,3 +91,26 @@ Rules include
     - dangerous-exec-command
     - detected-generic-secret
     - hardcoded-apikey
+    - arbitrary-low-level-call
+    - basic-arithmetic-underflow
+    - basic-oracle-manipulation
+    - basic-reentrancy
+    - compound-borrowfresh-reentrancy
+    - compound-sweeptoken-not-restricted
+    - erc20-public-burn
+    - erc20-public-transfer
+    - erc677-reentrancy
+    - erc721-arbitrary-transferfrom
+    - erc721-reentrancy
+    - erc777-reentrancy
+    - gearbox-tokens-path-confusion
+    - keeper-network-oracle-manipulation
+    - oracle-price-update-not-restricted
+    - proxy-storage-collision
+    - redacted-cartel-custom-approval-bug
+    - rigoblock-missing-access-control
+    - rikkei-setoracledata-not-restricted
+    - sense-missing-oracle-access-control
+    - superfluid-ctx-injection
+    - tecra-coin-burnfrom-bug
+    - treasuredao-input-validation-vuln 
