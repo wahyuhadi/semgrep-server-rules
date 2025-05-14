@@ -1,0 +1,35 @@
+rules:
+  - id: php-laravel-seeder-cred
+    patterns:
+      - pattern-either:
+          - pattern: $user->password = Hash::make('...')
+          - pattern: $user->email = "..."
+          - pattern: $user->password = "..."
+    message: >-
+      Possible embedded credentials found in a Laravel seeder. Avoid hardcoding sensitive information such as passwords,
+      emails, or usernames in seed files. Use environment variables or generate them dynamically.
+    languages: [php]
+    severity: WARNING
+    metadata:
+      category: security
+      cwe: ['CWE-798: Use of Hard-coded Credentials']
+      owasp: ['A07:2021 - Identification and Authentication Failures']
+      technology: [php, laravel]
+      references:
+        - https://laravel.com/docs/10.x/seeding
+        - https://cwe.mitre.org/data/definitions/798.html
+      subcategory: [audit, security]
+      likelihood: MEDIUM
+      impact: MEDIUM
+      confidence: MEDIUM
+      advice: >-
+        To fix embedded credentials in Laravel seeders, avoid hardcoding sensitive information such as passwords, emails, or usernames directly in the seeder files. Instead, use environment variables defined in the .env file, or generate the data dynamically. For example, retrieve credentials using env('KEY') for environment-based configuration, or use a secure method for generating random passwords.
+
+
+
+
+
+
+
+
+
