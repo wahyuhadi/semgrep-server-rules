@@ -130,4 +130,5 @@ packs:
      - superfluid-ctx-injection
      - tecra-coin-burnfrom-bug
      - treasuredao-input-validation-vuln
-     
+  supply:
+     - leaking-commonfiles
