@@ -1,0 +1,16 @@
+rules:
+  - id: supply-chain-git-hook-ostype-check
+    pattern-either:
+      - pattern-regex: |
+          \$OSTYPE|darwin.*linux.*msys
+          |case.*\$OSTYPE
+      - pattern-regex: |
+          pre-commit|pre-push|post-checkout
+          .*curl|wget
+    message: Platform-specific malware in git hook
+    languages: [sh, bash]
+    severity: CRITICAL
+    metadata:
+      category: supply_chain
+      type: git_hook_malware
+      attack: platform_specific_payload

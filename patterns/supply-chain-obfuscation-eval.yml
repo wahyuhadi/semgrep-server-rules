@@ -1,0 +1,22 @@
+rules:
+  - id: supply-chain-obfuscation-eval
+    pattern-either:
+      - pattern: eval(...)
+      - pattern: exec(...)
+    message: Dynamic code execution detected - severe obfuscation/injection risk
+    languages: [javascript, python]
+    severity: ERROR
+    metadata:
+      category: supply_chain
+      type: obfuscation
+      attack: dynamic_execution
+
+  - id: supply-chain-obfuscation-eval-regex
+    pattern-regex: |
+      (new Function.*code|Function.*constructor|eval\(|exec\()
+    message: Dynamic code execution pattern detected
+    languages: [generic]
+    severity: ERROR
+    metadata:
+      category: supply_chain
+      type: obfuscation

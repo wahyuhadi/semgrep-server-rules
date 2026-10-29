@@ -1,0 +1,27 @@
+rules:
+  - id: supply-chain-stealer-ssh-key-access
+    pattern-either:
+      - pattern: fs.readFileSync('~/.ssh/...')
+      - pattern: open('~/.ssh/...')
+    message: SSH key access detected - credential theft risk
+    languages: [javascript, python]
+    severity: ERROR
+    metadata:
+      category: supply_chain
+      type: stealer
+      attack: credential_theft
+
+  - id: supply-chain-stealer-ssh-key-access-regex
+    pattern-regex: |
+      (~/.ssh|id_rsa|id_dsa|id_ecdsa|authorized_keys|known_hosts)
+    message: SSH key reference detected - credential theft risk
+    languages: [generic]
+    severity: ERROR
+    paths:
+      include:
+        - "*.sh"
+        - "*.bash"
+        - "*hooks/*"
+    metadata:
+      category: supply_chain
+      type: stealer

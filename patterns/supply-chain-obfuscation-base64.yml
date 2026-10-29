@@ -1,0 +1,23 @@
+rules:
+  - id: supply-chain-obfuscation-base64
+    pattern-either:
+      - pattern: Buffer.from('...', 'base64')
+      - pattern: base64.b64decode(...)
+      - pattern: atob(...)
+    message: Base64 decoding detected - potential code obfuscation
+    languages: [javascript, python]
+    severity: WARNING
+    metadata:
+      category: supply_chain
+      type: obfuscation
+      attack: code_hiding
+
+  - id: supply-chain-obfuscation-base64-regex
+    pattern-regex: |
+      (atob|Buffer\.from.*base64|b64decode|base64.*decode|base64_decode)
+    message: Base64 decoding pattern detected
+    languages: [generic]
+    severity: WARNING
+    metadata:
+      category: supply_chain
+      type: obfuscation

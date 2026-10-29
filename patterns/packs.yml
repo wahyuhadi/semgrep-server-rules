@@ -46,7 +46,7 @@ packs:
     - bad-custom-expression-as-sql
     - avoid-raw-sql
     - path-traversal-open
-    - avoid-sqlalchemy-text 
+    - avoid-sqlalchemy-text
     - sqlalchemy-execute-raw-query
     - go-order-by
   go:
@@ -84,51 +84,88 @@ packs:
     - detected-generic-secret
     - hardcoded-apikey
   js:
-     - node-postgres-sqli
-     - sequelize-sqli
-     - tainted-eval
+    - node-postgres-sqli
+    - sequelize-sqli
+    - tainted-eval
   php:
-     - php-tainted-sql-string
-     - md5-loose-equality
-     - laravel-api-route-sql-injection
-     - php-laravel-sqli
-     - php-laravel-debug
-     - php-laravel-seeder-cred
+    - php-tainted-sql-string
+    - md5-loose-equality
+    - laravel-api-route-sql-injection
+    - php-laravel-sqli
+    - php-laravel-debug
+    - php-laravel-seeder-cred
   py:
-     - sqlalchemy-sqli
-     - py-mysql-sqli
-     - pymysql-sqli
-     - tainted-pickle-deserialization
-     - pytainted-sql-string
-     - boto-hardcoded-token
-     - bad-custom-expression-as-sql
-     - avoid-raw-sql
-     - path-traversal-open
-     - avoid-sqlalchemy-text
-     - sqlalchemy-execute-raw-query
+    - sqlalchemy-sqli
+    - py-mysql-sqli
+    - pymysql-sqli
+    - tainted-pickle-deserialization
+    - pytainted-sql-string
+    - boto-hardcoded-token
+    - bad-custom-expression-as-sql
+    - avoid-raw-sql
+    - path-traversal-open
+    - avoid-sqlalchemy-text
+    - sqlalchemy-execute-raw-query
   solidity:
-     - arbitrary-low-level-call
-     - basic-arithmetic-underflow
-     - basic-oracle-manipulation
-     - basic-reentrancy
-     - compound-borrowfresh-reentrancy
-     - compound-sweeptoken-not-restricted
-     - erc20-public-burn
-     - erc20-public-transfer
-     - erc677-reentrancy
-     - erc721-arbitrary-transferfrom
-     - erc721-reentrancy
-     - erc777-reentrancy
-     - gearbox-tokens-path-confusion
-     - keeper-network-oracle-manipulation
-     - oracle-price-update-not-restricted
-     - proxy-storage-collision
-     - redacted-cartel-custom-approval-bug
-     - rigoblock-missing-access-control
-     - rikkei-setoracledata-not-restricted
-     - sense-missing-oracle-access-control
-     - superfluid-ctx-injection
-     - tecra-coin-burnfrom-bug
-     - treasuredao-input-validation-vuln
+    - arbitrary-low-level-call
+    - basic-arithmetic-underflow
+    - basic-oracle-manipulation
+    - basic-reentrancy
+    - compound-borrowfresh-reentrancy
+    - compound-sweeptoken-not-restricted
+    - erc20-public-burn
+    - erc20-public-transfer
+    - erc677-reentrancy
+    - erc721-arbitrary-transferfrom
+    - erc721-reentrancy
+    - erc777-reentrancy
+    - gearbox-tokens-path-confusion
+    - keeper-network-oracle-manipulation
+    - oracle-price-update-not-restricted
+    - proxy-storage-collision
+    - redacted-cartel-custom-approval-bug
+    - rigoblock-missing-access-control
+    - rikkei-setoracledata-not-restricted
+    - sense-missing-oracle-access-control
+    - superfluid-ctx-injection
+    - tecra-coin-burnfrom-bug
+    - treasuredao-input-validation-vuln
   supply:
-     - leaking-commonfiles
+    - leaking-commonfiles
+    - supply-chain-stealer-env-access
+    - supply-chain-stealer-ssh-key-access
+    - supply-chain-stealer-ssh-key-access-regex
+    - supply-chain-stealer-api-key-hardcoded
+    - supply-chain-malware-crypto-mining
+    - supply-chain-malware-crypto-mining-regex
+    - supply-chain-malware-c2-communication
+    - supply-chain-malware-c2-communication-regex
+    - supply-chain-malware-ransomware
+    - supply-chain-malware-ransomware-regex
+    - supply-chain-obfuscation-base64
+    - supply-chain-obfuscation-base64-regex
+    - supply-chain-obfuscation-hex
+    - supply-chain-obfuscation-hex-regex
+    - supply-chain-obfuscation-eval
+    - supply-chain-obfuscation-eval-regex
+    - supply-chain-git-hook-rce
+    - supply-chain-git-hook-hidden-execution
+    - supply-chain-git-hook-ostype-check
+    - supply-chain-git-hook-shortened-url
+    - supply-chain-build-postinstall-hook
+    - supply-chain-build-npm-script
+    - supply-chain-build-npm-script-regex
+    - supply-chain-build-shell-execution
+    - supply-chain-build-shell-execution-regex
+    - supply-chain-suspicious-shell-exec
+    - supply-chain-suspicious-shell-exec-regex
+    - supply-chain-suspicious-file-access
+    - supply-chain-suspicious-file-access-regex
+    - supply-chain-anti-vm-detect
+    - supply-chain-anti-debugger-detect
+    - supply-chain-privilege-sudo
+    - supply-chain-privilege-sudo-regex
+    - supply-chain-privilege-root-access
+    - supply-chain-privilege-root-access-regex
+    - supply-chain-external-resource-loading
+    - supply-chain-external-dynamic-require

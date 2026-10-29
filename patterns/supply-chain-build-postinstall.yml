@@ -1,0 +1,15 @@
+rules:
+  - id: supply-chain-build-postinstall-hook
+    pattern-either:
+      - pattern-regex: |
+          "postinstall"|"preinstall"
+          |"prepublish"|"prepare"
+      - pattern: '"scripts": { "postinstall": ... }'
+      - pattern: npm_scripts.postinstall
+    message: NPM install hook detected - potential build-time injection
+    languages: [json, javascript, yaml]
+    severity: HIGH
+    metadata:
+      category: supply_chain
+      type: build_injection
+      attack: installation_hook

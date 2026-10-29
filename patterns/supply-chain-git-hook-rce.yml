@@ -1,0 +1,16 @@
+rules:
+  - id: supply-chain-git-hook-rce
+    pattern-either:
+      - pattern-regex: |
+          curl.*\|.*sh|wget.*\|.*sh
+          |curl.*\|.*bash|wget.*\|.*bash
+      - pattern-regex: |
+          \|.*cmd.*>.*dev.null
+      - pattern: curl -s ... | sh
+    message: Git hook with remote code execution detected - CRITICAL MALWARE
+    languages: [sh, bash]
+    severity: CRITICAL
+    metadata:
+      category: supply_chain
+      type: git_hook_malware
+      attack: remote_execution

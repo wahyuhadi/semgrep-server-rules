@@ -1,0 +1,15 @@
+rules:
+  - id: supply-chain-external-resource-loading
+    pattern-either:
+      - pattern-regex: |
+          fetch\(.*http|axios\.get.*http
+          |requests\.get.*http|urllib.*http
+      - pattern: fetch('http://...')
+      - pattern: requests.get('http://...')
+    message: External HTTP resource loading detected - potential remote code injection
+    languages: [javascript, python]
+    severity: HIGH
+    metadata:
+      category: supply_chain
+      type: external_resources
+      attack: remote_payload

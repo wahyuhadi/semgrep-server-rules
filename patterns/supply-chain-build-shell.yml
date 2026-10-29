@@ -1,0 +1,23 @@
+rules:
+  - id: supply-chain-build-shell-execution
+    pattern-either:
+      - pattern: os.system(...)
+      - pattern: subprocess.run(..., shell=True)
+      - pattern: exec(...)
+    message: Shell command execution in build script detected
+    languages: [python]
+    severity: WARNING
+    metadata:
+      category: supply_chain
+      type: build_injection
+      attack: command_injection
+
+  - id: supply-chain-build-shell-execution-regex
+    pattern-regex: |
+      (bash.*-c|sh.*-c|eval.*command|system\(|popen\()
+    message: Shell command execution pattern detected
+    languages: [generic]
+    severity: WARNING
+    metadata:
+      category: supply_chain
+      type: build_injection

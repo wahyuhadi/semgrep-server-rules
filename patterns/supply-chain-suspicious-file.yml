@@ -1,0 +1,22 @@
+rules:
+  - id: supply-chain-suspicious-file-access
+    pattern-either:
+      - pattern: open('/etc/...')
+      - pattern: fs.readFileSync('/etc/...')
+    message: Unauthorized sensitive file access detected
+    languages: [python, javascript]
+    severity: WARNING
+    metadata:
+      category: supply_chain
+      type: suspicious_code
+      attack: unauthorized_access
+
+  - id: supply-chain-suspicious-file-access-regex
+    pattern-regex: |
+      (/etc/passwd|/etc/shadow|/root/\.ssh|/var/log/auth)
+    message: Sensitive file reference detected
+    languages: [generic]
+    severity: WARNING
+    metadata:
+      category: supply_chain
+      type: suspicious_code

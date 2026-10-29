@@ -1,0 +1,23 @@
+rules:
+  - id: supply-chain-suspicious-shell-exec
+    pattern-either:
+      - pattern: os.system(...)
+      - pattern: subprocess.call(...)
+      - pattern: exec(...)
+    message: Shell command execution detected - potential system compromise
+    languages: [python]
+    severity: WARNING
+    metadata:
+      category: supply_chain
+      type: suspicious_code
+      attack: shell_execution
+
+  - id: supply-chain-suspicious-shell-exec-regex
+    pattern-regex: |
+      (system\(|popen\(|exec\(|subprocess\.|os\.system)
+    message: Shell execution pattern detected
+    languages: [generic]
+    severity: WARNING
+    metadata:
+      category: supply_chain
+      type: suspicious_code

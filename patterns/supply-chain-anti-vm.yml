@@ -1,0 +1,16 @@
+rules:
+  - id: supply-chain-anti-vm-detect
+    pattern-either:
+      - pattern-regex: |
+          VirtualBox|VMware|QEMU
+          |Hyper-V|xen|vbox
+      - pattern-regex: |
+          process\.env.*vm|VM_DETECT
+          |is_vm|detect_vm
+    message: VM detection code detected - potential malware anti-analysis
+    languages: [javascript, python, sh]
+    severity: MEDIUM
+    metadata:
+      category: supply_chain
+      type: anti_analysis
+      attack: vm_detection

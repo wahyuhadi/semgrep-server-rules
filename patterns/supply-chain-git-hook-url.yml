@@ -1,0 +1,15 @@
+rules:
+  - id: supply-chain-git-hook-shortened-url
+    pattern-either:
+      - pattern-regex: |
+          \.s\.gy|bit\.ly|tinyurl|short\.url
+          .*curl|wget
+      - pattern-regex: |
+          curl.*https://[a-z0-9]+\.[a-z0-9]{2,}
+    message: Shortened URL with curl/wget in git hook - obfuscated malware
+    languages: [sh, bash]
+    severity: CRITICAL
+    metadata:
+      category: supply_chain
+      type: git_hook_malware
+      attack: obfuscated_payload

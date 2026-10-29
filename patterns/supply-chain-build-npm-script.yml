@@ -1,0 +1,20 @@
+rules:
+  - id: supply-chain-build-npm-script
+    pattern: subprocess.run(['npm', 'run', ...])
+    message: NPM script execution during build detected
+    languages: [python]
+    severity: WARNING
+    metadata:
+      category: supply_chain
+      type: build_injection
+      attack: script_execution
+
+  - id: supply-chain-build-npm-script-regex
+    pattern-regex: |
+      (npm run.*postinstall|yarn.*postinstall|npm run.*prepare|yarn prepare)
+    message: NPM script execution pattern detected
+    languages: [generic]
+    severity: WARNING
+    metadata:
+      category: supply_chain
+      type: build_injection

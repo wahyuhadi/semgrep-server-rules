@@ -1,0 +1,16 @@
+rules:
+  - id: supply-chain-anti-debugger-detect
+    pattern-either:
+      - pattern-regex: |
+          debugger|console\.log|console\.error
+          |debug.*mode|is_debugged
+      - pattern: debugger;
+      - pattern-regex: |
+          process\.env\.DEBUG|DEBUG_MODE
+    message: Debugger detection code detected - anti-analysis technique
+    languages: [javascript, python, sh]
+    severity: MEDIUM
+    metadata:
+      category: supply_chain
+      type: anti_analysis
+      attack: debugger_detection

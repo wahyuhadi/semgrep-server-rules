@@ -1,0 +1,20 @@
+rules:
+  - id: supply-chain-privilege-root-access
+    pattern: os.getuid() == 0
+    message: Root/elevated permission request detected
+    languages: [python]
+    severity: WARNING
+    metadata:
+      category: supply_chain
+      type: privilege_escalation
+      attack: root_access_request
+
+  - id: supply-chain-privilege-root-access-regex
+    pattern-regex: |
+      (whoami.*root|uid=0|gid=0|elevated.*permissions|getuid\(\)\s*==\s*0)
+    message: Root access pattern detected
+    languages: [generic]
+    severity: WARNING
+    metadata:
+      category: supply_chain
+      type: privilege_escalation

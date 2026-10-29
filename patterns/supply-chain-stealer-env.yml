@@ -1,0 +1,13 @@
+rules:
+  - id: supply-chain-stealer-env-access
+    pattern-either:
+      - pattern: process.env
+      - pattern: os.environ
+      - pattern: getenv(...)
+    message: Environment variable access detected - potential credential theft
+    languages: [javascript, python]
+    severity: ERROR
+    metadata:
+      category: supply_chain
+      type: stealer
+      attack: credential_theft

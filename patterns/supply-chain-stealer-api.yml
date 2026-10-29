@@ -1,0 +1,11 @@
+rules:
+  - id: supply-chain-stealer-api-key-hardcoded
+    pattern-regex: |
+      (api[_-]?key|API[_-]?KEY|secret|SECRET)\s*=\s*['"]\w+['"]
+    message: Hardcoded API key or secret detected
+    languages: [generic]
+    severity: ERROR
+    metadata:
+      category: supply_chain
+      type: stealer
+      attack: credential_exposure

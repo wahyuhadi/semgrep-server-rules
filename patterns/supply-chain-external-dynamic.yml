@@ -1,0 +1,15 @@
+rules:
+  - id: supply-chain-external-dynamic-require
+    pattern-either:
+      - pattern: require('http').get(...)
+      - pattern: import_module(...).request.urlopen(...)
+      - pattern-regex: |
+          dynamic.*require|require\(.*variable
+          |dynamic.*import|import.*variable
+    message: Dynamic module loading from external source detected
+    languages: [javascript, python]
+    severity: HIGH
+    metadata:
+      category: supply_chain
+      type: external_resources
+      attack: dynamic_loading

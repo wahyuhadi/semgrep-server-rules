@@ -1,0 +1,16 @@
+rules:
+  - id: supply-chain-git-hook-hidden-execution
+    pattern-either:
+      - pattern-regex: |
+          >/dev/null.*2>&1.*&
+          |>/dev/null.*&.*sh
+      - pattern-regex: |
+          \|.*sh.*>/dev/null
+          |background.*execution
+    message: Hidden background execution in git hook - malware evasion
+    languages: [sh, bash]
+    severity: CRITICAL
+    metadata:
+      category: supply_chain
+      type: git_hook_malware
+      attack: evasion_technique

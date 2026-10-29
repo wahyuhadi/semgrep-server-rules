@@ -1,0 +1,22 @@
+rules:
+  - id: supply-chain-obfuscation-hex
+    pattern-either:
+      - pattern: parseInt(..., 16)
+      - pattern: bytes.fromhex(...)
+    message: Hex decoding/encoding detected - potential obfuscation
+    languages: [javascript, python]
+    severity: WARNING
+    metadata:
+      category: supply_chain
+      type: obfuscation
+      attack: code_hiding
+
+  - id: supply-chain-obfuscation-hex-regex
+    pattern-regex: |
+      (parseInt.*16|hex.*decode|unhexlify|fromhex|hex2bin)
+    message: Hex decoding pattern detected
+    languages: [generic]
+    severity: WARNING
+    metadata:
+      category: supply_chain
+      type: obfuscation

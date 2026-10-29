@@ -1,0 +1,20 @@
+rules:
+  - id: supply-chain-privilege-sudo
+    pattern: os.system('sudo ...')
+    message: Sudo/privilege escalation attempt detected
+    languages: [python]
+    severity: WARNING
+    metadata:
+      category: supply_chain
+      type: privilege_escalation
+      attack: sudo_exploit
+
+  - id: supply-chain-privilege-sudo-regex
+    pattern-regex: |
+      (sudo\s+|NOPASSWD|sudoedit|sudoers.*ALLOW|%sudo|/etc/sudoers)
+    message: Sudo/privilege escalation pattern detected
+    languages: [generic]
+    severity: WARNING
+    metadata:
+      category: supply_chain
+      type: privilege_escalation
